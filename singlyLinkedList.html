@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>链表</title>
+</head>
+<body>
+  
+  <script>
+
+    function SinglyLinkedList(){
+        function Node(data){
+          this.data=data;
+          this.next=null;
+        }
+        this.header = null;
+        this.length = 0;
+        SinglyLinkedList.prototype.append = function(data){
+            let nodeList = new Node(data);
+            if(this.length === 0){
+              this.header=nodeList;
+            }else{
+              var curroud = this.header;
+              while(curroud.next){
+                curroud=curroud.next
+              }
+              curroud.next=nodeList;
+            }
+          this.length++;
+        }
+        SinglyLinkedList.prototype.inster=function(index,data){
+          if(index<0 || index>this.length)return false
+          let nodeList = new Node(data);
+          if(index === 0){
+           nodeList.next = this.header;
+           this.header=nodeList;
+          }else{
+            var curroud = this.header;
+            var num = 0,previous=null;
+            while(num++ < index){
+              previous=curroud;
+              curroud=curroud.next;
+            }
+            nodeList.next=curroud;
+            previous.next=nodeList;
+          }
+          this.length++;
+        }
+        //修改数据
+        SinglyLinkedList.prototype.updated=function(index,data) {
+          if(index<0 || index>=this.length)return false
+          var num=0,curroud=this.header;
+          while(num++ < index){
+            curroud=curroud.next;
+          }  
+          curroud.data=data;
+        }
+    }
+    let list = new SinglyLinkedList();
+    list.append('1');
+    console.log(list);
+    list.append('2')
+    console.log(list);
+    list.append('3')
+    console.log(list);
+    list.append('4')
+    console.log(list);
+    list.append('5')
+    console.log(list);
+  </script>
+</body>
+</html>
