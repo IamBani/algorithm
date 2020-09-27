@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>队列</title>
+</head>
+<body>
+  <script>
+    function Queue(){
+      this.item = [];
+      Queue.prototype.enqueue = function(ele){
+        this.item.push(...arguments);
+      }
+
+      Queue.prototype.dequeue = function () {
+        return this.item.shift();
+      }
+
+      Queue.prototype.front = function () {
+        return this.item[0]
+      }
+
+      Queue.prototype.isEmpty = function () {
+        return this.item.length === 0;
+      }
+
+      Queue.prototype.size = function () {
+        return this.item.length;
+      }
+
+      Queue.prototype.clear = function () {
+        this.item = [];
+      }
+      Queue.prototype.toString = function (){
+        return this.item.toString();
+      }
+    }
+   let queue = new Queue();
+   queue.enqueue(1,function(){console.log('o')});
+  
+
+  // 双队列
+  function Deque () {
+    this.item= [];
+
+    Deque.prototype.addFront = function () {
+      this.item.unshift(...arguments);
+    } 
+
+    Deque.prototype.addBack = function () {
+      this.item.push(...arguments);
+    }
+
+    Deque.prototype.removeFront = function () {
+      return this.item.shift()
+    }
+
+    Deque.prototype.removeBack =function () {
+      return this.item.pop()
+    }
+
+    Deque.prototype.peekFront = function () {
+      return this.item[0]
+    }
+
+    Deque.prototype.peekBack = function () {
+      return this.item[this.item.length-1]
+    }
+
+    Deque.prototype.isEmpty = function () {
+      return this.item.length === 0;
+    }
+
+    Deque.prototype.size = function () {
+      return this.item.length
+    }
+
+    Deque.prototype.clear = function () {
+      this.item = [];
+    }
+
+    Deque.prototype.toString = function () {
+      return this.item.toString()
+    }
+  }
+  </script>
+</body>
+</html>
