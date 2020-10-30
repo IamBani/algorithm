@@ -136,7 +136,7 @@
             }
           }
         }else if(node.left !== null && node.right !== null){
-          
+          let successnode = this._forerunner(node);
 
         }else{
           if(node === this.root){
@@ -159,6 +159,19 @@
             }
           }
         }
+      }
+      BinarySearchTree.prototype._forerunner = function(node){
+        let nodeleft = node.left;
+        let nodeParent =null;
+        while(nodeleft.right !== null){
+          nodeParent = nodeleft
+          nodeleft = nodeleft.right;
+        }
+        if(nodeleft.left !== null && nodeParent !== null){
+          nodeParent.right = nodeleft.left
+        }
+        
+        return nodeleft
       }
     } 
 
