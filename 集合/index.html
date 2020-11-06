@@ -8,30 +8,89 @@
 <body>
   <script>
     function MathSet() {
-      var items = {};
+      this.items = {};
 
-      MathSet.prototype.add = function() {
-        
+      MathSet.prototype.add = function(value) {
+       if(this.has(value)){
+          return false;
+       }
+        this.items[value] = value;
+        return true
       }
 
-      MathSet.prototype.delete = function() {
-
+      MathSet.prototype.delete = function(value) {
+        if(!this.has(value)){
+          return false
+        }
+        delete this.items[value];
+        return true
       }
 
-      MathSet.prototype.has = function() {
-
+      MathSet.prototype.has = function(value) {
+        return this.items.hasOwnProperty(value);
       }
 
       MathSet.prototype.clear = function () {
-
+        this.items={};
       }
 
       MathSet.prototype.size = function () {
-
+        return Object.keys(this.items).length;
       }
 
       MathSet.prototype.values = function () {
+        return Object.keys(this.items)
+      }
+      //并集
+      MathSet.prototype.union = function (otherSet){
+        var unionset = new MathSet();
+        var values = this.values();
+        for(var i= 0; i < values.length; i++){
+          unionset.add(values[i])
+        }
+        values = otherSet.values();
+        for (var i =0; i<values.length; i++){
+          unionset.add(values[i]);
+        }
+        return unionset
+      }
+      //交集
+      MathSet.prototype.intersection = function(otherSet){
+        var intersection = new MathSet();
+        var values = this.values();
+        for(var i=0; i<values.length; i++){
+          var item = values[i];
+          if(otherSet.has(item)){
+            intersection.add(item);
+          }
+        }
+        return intersection
+      }
 
+      //差集
+      MathSet.prototype.difference =function(otherSet){
+        var differenceset = new MathSet()
+
+        var values = this.values()
+        for(var i=0;i<values.length; i++ ){
+          var item =values[i];
+          if(!otherSet.has(item)){
+            differenceset.add(item)
+          }
+        }
+        return differenceset
+      }
+
+      //子集
+      MathSet.prototype.subset  =function(otherSet){
+        var values = this.values();
+        for(var i=0;i<values.length;  i++){
+          var item = values[i];
+          if(!otherSet.has(item)){
+            return false
+          }
+        }
+        return true
       }
     }
 
