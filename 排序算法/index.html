@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>排序算法</title>
+</head>
+<body>
+  <script>
+    function ArrList(){
+      this.array = [];
+
+      ArrList.prototype.insert = function (item){
+        this.array.push(item)
+      }
+
+      ArrList.prototype.toString = function (){
+        return this.array.join(',')
+      } 
+
+      //冒泡算法
+
+      ArrList.prototype.bubblesort = function (){
+        let length = this.array.length
+        for (let i = length-1; i>=0; i--) {
+          for (let index = 0; index < i; index++) {
+            if(this.array[index]>this.array[index+1]){
+              let temp = this.array[index];
+              this.array[index] = this.array[index+1];
+              this.array[index+1] = temp;
+            }
+          }
+        } 
+      }
+
+      ArrList.prototype.selectionSort = function () {
+        for (let j = 0; j < this.array.length; j++) {
+          let min =j;
+          for (let index = j; index <this.array.length; index++) {
+              if(this.array[min]>this.array[index]){
+                  min = index;
+              }
+            }
+            let temp = this.array[min];
+            this.array[min] = this.array[j];
+            this.array[j] = temp;
+        }
+      }
+
+      ArrList.prototype.insertionSort = function (){
+        let length = this.array.length;
+
+        for (let index = 1; index < length; index++) {
+          var temp = this.array[index];
+          var j = index;
+          while(this.array[j-1]>temp && j>0){
+            this.array[j] = this.array[j-1];
+            j--;
+          }
+          this.array[j] = temp;
+        }
+      }
+    }
+
+    var arrlist = new ArrList();
+    arrlist.insert(19);
+    arrlist.insert(10);
+    arrlist.insert(16);
+    arrlist.insert(45);
+    arrlist.insert(56);
+    arrlist.insert(34);
+    arrlist.insert(23);
+    arrlist.insert(11);
+    arrlist.insert(15);
+    
+  </script>
+</body>
+</html>
